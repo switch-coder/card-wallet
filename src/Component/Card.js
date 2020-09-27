@@ -32,7 +32,7 @@ const Image = styled.div`
 `;
 
 const Card = ({ name, name_en, num, image_color, font_color }) => (
-  <Link to="">
+  <Link to={`/edit/${num}`}>
     <Container>
       <Image
         bgUrl={require(`../asset/logo/${num}.png`)}
