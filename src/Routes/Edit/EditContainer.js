@@ -8,7 +8,20 @@ export default class extends React.Component {
     bgColor: null,
     color: null,
     name: null,
-    name_en: null,
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    alert("submit");
+  };
+
+  updateTerm = (event) => {
+    const {
+      target: { value },
+    } = event;
+    this.setState({
+      searchTerm: value,
+    });
   };
 
   async componentDidMount() {
@@ -18,9 +31,6 @@ export default class extends React.Component {
         params: { id },
       },
     } = this.props;
-
-    // console.log(history);
-    console.log(id);
 
     if (isNaN(parseInt(id))) {
       return push("/");
@@ -32,7 +42,6 @@ export default class extends React.Component {
     if (data.length === 0 || Array.isArray(data) === false) {
       return push("/");
     }
-
     this.setState({
       num: id,
       bgColor: data[0].img_color,
@@ -44,13 +53,14 @@ export default class extends React.Component {
 
   render() {
     const { num, bgColor, color, name, name_en } = this.state;
+    console.log(typeof num);
     return (
       <EditPresenter
         num={num}
         bgColor={bgColor}
         color={color}
         name={name}
-        name_en={name_en}
+        handleSubmit={this.handleSubmit}
       ></EditPresenter>
     );
   }
