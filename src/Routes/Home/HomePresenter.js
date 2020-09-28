@@ -9,34 +9,37 @@ const Container = styled.div`
   width: 80vw;
   min-height: 200px;
   margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 25px;
 `;
 
 const Title = styled.div`
   display: flex;
+  padding: 10px;
+  align-items: center;
+  border-bottom: 1.3px solid black;
 `;
 
 const Tab = styled.span`
   width: 50%;
-  text-align: center;
+  align-items: center;
+  display: flex;
   height: 50px;
-  font-size: 2em;
-  border-bottom: 1px solid rgba(223, 228, 234, 1);
-  :not(:last-child) {
-    border-right: 1px solid rgba(223, 228, 234, 1);
-  }
+  font-size: 1.2em;
+  font-weight: 600;
 `;
 
 const Contents = styled.div`
   display: grid;
   padding: 10px;
+  gap: 20px;
   grid-template-columns: repeat(4, 1fr);
 `;
 
 const HomePresenter = ({ MemberShip }) => (
   <Container>
     <Title>
-      <Tab>home</Tab>
-      <Tab>공지사항</Tab>
+      <Tab>패스 리스트</Tab>
     </Title>
     {MemberShip && MemberShip.length > 0 && (
       <Contents>

@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  padding: 10px;
   padding-bottom: 0px;
 `;
 
@@ -12,16 +11,15 @@ const Title = styled.span`
   position: relative;
   font-size: 1em;
   color: ${(props) => props.font_color};
-  /* background-color: ${(props) => props.bgColor}; */
   display: flex;
-  bottom: 30px;
+  height: 150px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `;
 
 const Image = styled.div`
   background-image: url(${(props) => props.bgUrl});
-  height: 160px;
+  height: 170px;
   width: 100%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -34,13 +32,11 @@ const Image = styled.div`
 const Card = ({ name, name_en, num, image_color, font_color }) => (
   <Link to={`/edit/${num}`}>
     <Container>
-      <Image
-        bgUrl={require(`../asset/logo/${num}.png`)}
-        bgColor={image_color}
-      />
-      <Title font_color={font_color} bgColor={image_color}>
-        {name}
-      </Title>
+      <Image bgUrl={require(`../asset/logo/${num}.png`)} bgColor={image_color}>
+        <Title font_color={font_color} bgColor={image_color}>
+          {name}
+        </Title>
+      </Image>
     </Container>
   </Link>
 );
