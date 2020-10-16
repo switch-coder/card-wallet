@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/card-wallet/static/css/main.08eef017.chunk.css",
+    "main.js": "/card-wallet/static/js/main.bdc6a524.chunk.js",
+    "main.js.map": "/card-wallet/static/js/main.bdc6a524.chunk.js.map",
+    "runtime-main.js": "/card-wallet/static/js/runtime-main.73eae6e2.js",
+    "runtime-main.js.map": "/card-wallet/static/js/runtime-main.73eae6e2.js.map",
+    "static/js/2.9e01b049.chunk.js": "/card-wallet/static/js/2.9e01b049.chunk.js",
+    "static/js/2.9e01b049.chunk.js.map": "/card-wallet/static/js/2.9e01b049.chunk.js.map",
+    "index.html": "/card-wallet/index.html",
+    "precache-manifest.cb5c8f9c027fa133f84d7803cf4e2a86.js": "/card-wallet/precache-manifest.cb5c8f9c027fa133f84d7803cf4e2a86.js",
+    "service-worker.js": "/card-wallet/service-worker.js",
+    "static/css/main.08eef017.chunk.css.map": "/card-wallet/static/css/main.08eef017.chunk.css.map",
+    "static/js/2.9e01b049.chunk.js.LICENSE.txt": "/card-wallet/static/js/2.9e01b049.chunk.js.LICENSE.txt",
+    "static/media/103.png": "/card-wallet/static/media/103.8a353cbc.png",
+    "static/media/109.png": "/card-wallet/static/media/109.6d70709b.png",
+    "static/media/114.png": "/card-wallet/static/media/114.40affce7.png",
+    "static/media/122.png": "/card-wallet/static/media/122.1e9f9e79.png",
+    "static/media/126.png": "/card-wallet/static/media/126.d9924cbe.png",
+    "static/media/129.png": "/card-wallet/static/media/129.05123ef9.png",
+    "static/media/15.png": "/card-wallet/static/media/15.eb9e66a9.png",
+    "static/media/17.png": "/card-wallet/static/media/17.be628bbd.png",
+    "static/media/23.png": "/card-wallet/static/media/23.af745c6f.png",
+    "static/media/30.png": "/card-wallet/static/media/30.fba40c39.png",
+    "static/media/48.png": "/card-wallet/static/media/48.07ff930b.png",
+    "static/media/53.png": "/card-wallet/static/media/53.10726f67.png",
+    "static/media/58.png": "/card-wallet/static/media/58.5d6e31c3.png",
+    "static/media/61.png": "/card-wallet/static/media/61.f35caa73.png",
+    "static/media/86.png": "/card-wallet/static/media/86.3678e287.png",
+    "static/media/98.png": "/card-wallet/static/media/98.fafe7d19.png",
+    "static/media/99.png": "/card-wallet/static/media/99.12ebc636.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.73eae6e2.js",
+    "static/js/2.9e01b049.chunk.js",
+    "static/css/main.08eef017.chunk.css",
+    "static/js/main.bdc6a524.chunk.js"
+  ]
+}
