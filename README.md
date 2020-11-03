@@ -1,68 +1,32 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 프로젝트 소개
+-------
+- myapplewallet 사이트을 모티브로 만듬
+- myapplewallet 사용시 멤버쉽 번호를 직접입력하는게 불편하다고 생각하여 바코드로 번호를 추출해서 자동으로 입력되게하는게 목표
 
-## Available Scripts
+&nbsp;
 
-In the project directory, you can run:
+# 사용기술 
+-----
+- React React-hooks Javascript Styled-component Typescript
+- Apollo Graphql Mongodb Nodejs
 
-### `yarn start`
+&nbsp;
+-------
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1.회원가입 / 로그인 /로그아웃
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- 토큰기반 인증을 이용하여 로그인시 토큰이 발급되고 토큰값으로 수정 / 삭제 / 멤버십 생성
 
-### `yarn test`
+2. 멤버쉽 바코드 생성 / 조회
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 가지고 있는 멤버쉽 바코드(카드 번호) 를  입력하여 `Graphql` 이용하여 `MongoDB`에 저장
+- `Graphql`를 이용하여 생성된 카드번호 조회후 바코드로 변환
+- 수정시 동적으로 로고이미지 로드 후 수정창 띄움 수정후 `Graphql`  `useQuery-refetch`를 이용하여 데이터 다시 조회
 
-### `yarn build`
+4.반응형 웹 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 모바일에서도 사용가능하도록 사이즈에 따른 반응형 웹 구현
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+3. back-end 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- `Apollo` 서버에 `MongoDB`를 연동하여 사용
