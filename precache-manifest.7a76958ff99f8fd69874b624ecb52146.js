@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "923139422a7eeb5b4815bbcb80eb4956",
+    "revision": "d04a64c230da15907f684bc0e66582a3",
     "url": "/card-wallet/index.html"
   },
   {
-    "revision": "6bdac74a59e3efc14e60",
-    "url": "/card-wallet/static/css/main.08eef017.chunk.css"
+    "revision": "43d5125cbad56e7f636a",
+    "url": "/card-wallet/static/css/main.7de3b540.chunk.css"
   },
   {
-    "revision": "1cd65df26bbe3f5cb5c3",
-    "url": "/card-wallet/static/js/2.9e01b049.chunk.js"
+    "revision": "f5c843a8f7445526c0e5",
+    "url": "/card-wallet/static/js/2.1370d5b3.chunk.js"
   },
   {
-    "revision": "da42135372d3365a7233548ad1382c4d",
-    "url": "/card-wallet/static/js/2.9e01b049.chunk.js.LICENSE.txt"
+    "revision": "c87550333da8df8ab4c80bd1d6e9defb",
+    "url": "/card-wallet/static/js/2.1370d5b3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6bdac74a59e3efc14e60",
-    "url": "/card-wallet/static/js/main.bdc6a524.chunk.js"
+    "revision": "43d5125cbad56e7f636a",
+    "url": "/card-wallet/static/js/main.68dc562e.chunk.js"
   },
   {
     "revision": "74b199eeceb2fddfe3a1",
