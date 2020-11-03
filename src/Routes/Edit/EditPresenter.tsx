@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import PropsTypes from "prop-types";
+import { IBgColor, IBgUrl } from "../../Component/styledInterface"
 
 const Container = styled.div`
   background-color: #ffffff;
@@ -28,7 +28,7 @@ const Tab = styled.span`
   font-weight: 600;
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled.div<IBgColor>`
   width: 100%;
   height: 150px;
   display: flex;
@@ -39,7 +39,7 @@ const LogoContainer = styled.div`
   background-color: ${(props) => props.bgColor};
 `;
 
-const Logo = styled.div`
+const Logo = styled.div<IBgUrl>`
   background-image: url(${(props) => props.bgUrl});
   background-repeat: no-repeat;
   background-position: center;
@@ -73,6 +73,8 @@ const Label = styled.label`
   font-weight: 700;
   font-size: 0.8em;
   margin: 5px;
+  width:99%;
+  display:block;
 `;
 
 const Message = styled.p`
@@ -82,7 +84,7 @@ const Message = styled.p`
   color: #3742fa;
 `;
 
-const PassBtn = styled.button`
+const PassBtn = styled.button<IBgColor>`
   width: 100%;
   height: 50px;
   text-align: center;
@@ -99,7 +101,29 @@ const PassBtn = styled.button`
   }
 `;
 
-const EditPresenter = ({ num, bgColor, color, name, handleSubmit }) => (
+const Radio = styled.input`
+  margin-right:10px;
+`;
+const RadioLable = styled.label`
+  width:50%;
+  display:inline-block;
+`;
+
+
+interface IProps {
+  num: string;
+  bgColor: string;
+  color: string;
+  storeName: string;
+  userName: string;
+  serialNumber: string;
+  handleSubmit: (evnt: React.FormEvent) => void;
+  setUserName: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setSRNumber: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setRadio: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const EditPresenter: React.FunctionComponent<IProps> = ({ num, bgColor, color, storeName, userName, serialNumber, setUserName, setSRNumber, handleSubmit, setRadio }) => (
   <Container>
     <Title>
       <Tab>패스 등록</Tab>
@@ -110,30 +134,36 @@ const EditPresenter = ({ num, bgColor, color, name, handleSubmit }) => (
     <FormWrap onSubmit={handleSubmit}>
       <Row>
         <Label>이름</Label>
-        <Input type="text" placeholder="이름을 입력하세요" />
+        <Input value={userName} onChange={setUserName} type="text" placeholder="이름을 입력하세요" required />
         <Message>*실제 멤버쉽을 발급받은 사람의 이름을 입력하세요 </Message>
       </Row>
 
       <Row>
         <Label>멤버쉽 번호</Label>
-        <Input type="text" placeholder="이름을 입력하세요" />
+        <Input value={serialNumber} onChange={setSRNumber} type="text" placeholder="이름을 입력하세요" required />
         <Message>
           *실제 멤버쉽 번호를 "-" 를 제외하고 숫자만 입력해주세요{" "}
         </Message>
       </Row>
       <Row>
-        <Label>기본 바코드 타입</Label>
-        <Input type="text" placeholder="이름을 입력하세요" />
-        <Message>*실제 멤버쉽을 발급받은 사람의 이름을 입력하세요 </Message>
+        <Label>번호 표기방법 선택</Label>
+        <RadioLable><Radio type="radio" onChange={setRadio} value="true" name="isCutting" checked /> 네자리마다 띄어쓰기</RadioLable>
+        <RadioLable> <Radio type="radio" onChange={setRadio} value="false" name="isCutting" />모두 붙여쓰기</RadioLable>
       </Row>
-      <Row>
-        <Label>QR</Label>
-        <Input type="text" placeholder="이름을 입력하세요" />
-        <Message>*실제 멤버쉽을 발급받은 사람의 이름을 입력하세요 </Message>
-      </Row>
+
       <PassBtn
-        bgColor={bgColor !== "rgb(255, 255, 255)" ? bgColor : "#1e90ff"}
-        color={color}
+        bgColor={
+          bgColor !== "rgb(255, 255, 255)" &&
+            bgColor !== "rgb(252, 252, 252)" &&
+            bgColor !== "rgb(248, 248, 250)"
+            ? bgColor
+            : "#70a1ff"
+        }
+        color={
+          bgColor !== "rgb(255, 255, 255)" && bgColor !== "rgb(252, 252, 252)"
+            ? color
+            : "rgb(252, 252, 252)"
+        }
         type="submit"
       >
         발급 받기{" "}
@@ -142,12 +172,6 @@ const EditPresenter = ({ num, bgColor, color, name, handleSubmit }) => (
   </Container>
 );
 
-EditPresenter.propsTypes = {
-  num: PropsTypes.string,
-  bgColor: PropsTypes.string,
-  color: PropsTypes.string,
-  name: PropsTypes.string,
-  name_en: PropsTypes.string,
-};
+
 
 export default EditPresenter;
