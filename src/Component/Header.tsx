@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { ILogoutData, IMe } from "../apollo/interfaces";
 import { useHistory } from "react-router-dom";
@@ -144,7 +144,6 @@ const SomeComponent = withRouter((event) => {
   const [logout, logoutResult] = useMutation<ILogoutData>(LOGOUT);
   const history = useHistory();
   const [display, setDisplay] = useState("flex");
-  const myRef = useRef<HTMLDivElement>(null);
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
@@ -152,32 +151,27 @@ const SomeComponent = withRouter((event) => {
     logout();
   }
 
-  const handleClickOutside = e => {
-    if (myRef.current?.attributes[0].nodeValue === "flex") {
-      setDisplay("none");
-    }
-  };
-
-  const toggle = (e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
-    console.log(myRef)
-    if (display === "flex") setDisplay("none");
-    else if (display === "none") setDisplay("flex");
-  }
-
   if (sessionStorage.getItem("UserToken")) {
     user = data?.me
   }
 
+  function handleResize() {
+    if (window.innerWidth <= 750) { setDisplay("none") }
+    else if (window.innerWidth >= 750) { setDisplay("flex") };
+  }
 
+  const HeaderListToggle = (e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
+    if (window.innerWidth <= 750) {
+      if (display === "flex") setDisplay("none");
+      else if (display === "none") setDisplay("flex");
+    }
+
+  }
 
 
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth <= 750) { setDisplay("none") }
-      else if (window.innerWidth >= 750) { setDisplay("flex") };
-    }
-    window.addEventListener("resize", handleResize);
 
+    window.addEventListener("resize", handleResize);
     // document.addEventListener("mousedown", handleClickOutside);
     // document.removeEventListener("mousedown", handleClickOutside);
     if (logoutResult.data?.logout === true) {
@@ -198,30 +192,30 @@ const SomeComponent = withRouter((event) => {
 
     <Header display={display}>
       <Logo>
-        <SLink to="/" onClick={toggle} >
+        <SLink to="/" onClick={HeaderListToggle} >
           CardWallet
         </SLink>
       </Logo>
-      <MenuItem ref={myRef} onClick={toggle} display={display} >
+      <MenuItem onClick={HeaderListToggle} display={display} >
         <MenuIcon display={display} />
         <MenuIcon display={display} />
         <MenuIcon display={display} />
       </MenuItem>
       <List display={display}>
         <Item>
-          <SLink to="/" onClick={toggle}>
+          <SLink to="/" onClick={HeaderListToggle}>
             패스리스트
         </SLink>
         </Item>
         <Item>
-          <SLink to="/notice" onClick={toggle}>
+          <SLink to="/notice" onClick={HeaderListToggle}>
             공지사항
         </SLink>
         </Item>
         {
           user ? (
             <><Item>
-              <SLink to="/mypage" onClick={toggle}>
+              <SLink to="/mypage" onClick={HeaderListToggle}>
                 마이페이지
                 </SLink>
             </Item>
@@ -232,12 +226,12 @@ const SomeComponent = withRouter((event) => {
               </Item></>
           ) : (
               <><Item>
-                <SLink to="/login" onClick={toggle} >
+                <SLink to="/login" onClick={HeaderListToggle} >
                   로그인
                   </SLink>
               </Item>
                 <Item>
-                  <SLink to="/signup" onClick={toggle}>
+                  <SLink to="/signup" onClick={HeaderListToggle}>
                     회원가입
                     </SLink>
                 </Item></>
