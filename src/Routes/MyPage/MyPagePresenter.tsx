@@ -63,8 +63,9 @@ const ModifyContainer = styled.div<ModifyContainer>`
     background-color:${props => props.bgColor};
     box-shadow: 0px 0px 300px 200px rgba(0,0,0,0.29);
     border-radius:13px;
-    right:30%;
-    bottom:50%+60vh;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
     min-width:300px;
 `;
 
@@ -72,6 +73,8 @@ const Logo = styled.div<IBgUrl>`
     background-image: url(${(props) => props.bgUrl});
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
+    
     width: 100%;
     height:100px;
 `;
