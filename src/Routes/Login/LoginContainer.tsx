@@ -35,14 +35,23 @@ function Login() {
   const [ID, setID] = useState("");
   const [password, setPassword] = useState("");
   const loginData = loginResult.data?.login;
-  const context = useContext(UserContext);
+  const [userContext, setUserContext] = useContext(UserContext);
+
+  async function session() {
+    await sessionStorage.setItem("UserToken", loginData ? loginData.token : "")
+  }
 
   useEffect(() => {
     if (loginData) {
+      session();
+      console.log(sessionStorage.getItem("UserToken"))
       currentUserVar(loginData);
-      context?.setUser({ loginData, login: true });
-      sessionStorage.setItem("UserToken", loginData.token);
-      history.replace("/");
+      setUserContext(loginData);
+      console.log(userContext);
+
+
+      history.replace("/card-wallet/")
+
     } else if (loginData === null) {
       alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
     }

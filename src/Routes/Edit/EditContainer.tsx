@@ -27,19 +27,19 @@ export default (event: any) => {
   );
 
   if (isNaN(parseInt(id)) || data.length === 0) {
-    event.history.push("/");
+    event.history.push("/card-wallet/");
     return <></>;
   }
 
   if (!sessionStorage.getItem("UserToken")) {
-    event.history.push("/", alert("로그인이 필요합니다."));
+    event.history.push("/card-wallet/", alert("로그인이 필요합니다."));
     return <></>;
   }
 
   useEffect(() => {
     if (ResultAddCard.data?.addCard === true) {
       alert("추가되었습니다.");
-      event.history.push("/");
+      event.history.push("/card-wallet/");
     }
   })
   const handleSubmit = (event: React.FormEvent) => {

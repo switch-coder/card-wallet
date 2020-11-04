@@ -18,14 +18,14 @@ export default () => (
     <>
       <Header></Header>
       <Switch>
-        <Route path="/" exact={true} component={Home}></Route>
-        <Route path="/myPage" exact component={MyPage}></Route>
-        <Route path="/notice" exact component={Notice}></Route>
-        <Route path="/edit/:id" component={Edit}></Route>
-        <Route path="/Signup" component={Signup}></Route>
-        <Route path="/login" component={Login}></Route>
+        <Route path="/card-wallet/" exact={true} component={Home}></Route>
+        <Route path="/card-wallet/myPage" exact component={MyPage}></Route>
+        <Route path="/card-wallet/notice" exact component={Notice}></Route>
+        <Route path="/card-wallet/edit/:id" component={Edit}></Route>
+        <Route path="/card-wallet/Signup" component={Signup}></Route>
+        <Route path="/card-wallet/login" component={Login}></Route>
 
-        <Redirect to="/"></Redirect>
+        <Redirect to="/card-wallet/"></Redirect>
       </Switch>
     </>
   </Router>

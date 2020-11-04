@@ -89,7 +89,7 @@ const MyPageContainer = (event: any) => {
   }
   console.log(user)
 
-  if (user === null) history.replace("/login");
+  if (user === null) history.replace("/card-wallet/login");
 
   const modifyClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = event.currentTarget;

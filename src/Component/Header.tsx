@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { ILogoutData, IMe } from "../apollo/interfaces";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,7 @@ import { currentUserVar } from "../apollo/cache";
 import Error from "./Error";
 import Loading from "./Loading";
 import styled from "styled-components";
+import UserContext from "../Context/UserContext";
 
 
 const LOGOUT = gql`
@@ -121,6 +122,8 @@ const Header = styled.header<{ display: string }>`
       height:100%;
       width:100vw;
       right:0;
+      padding-left:0px;
+      margin-right:20px;
     }
     ${Item}{
       background-color:white;
@@ -140,19 +143,18 @@ const Header = styled.header<{ display: string }>`
 
 const SomeComponent = withRouter((event) => {
   let user;
-  const { data } = useQuery<IMe>(Me);
+
+  const { data, loading } = useQuery<IMe>(Me);
   const [logout, logoutResult] = useMutation<ILogoutData>(LOGOUT);
   const history = useHistory();
   const [display, setDisplay] = useState("flex");
+  const [userContext] = useContext(UserContext);
 
+  console.log(userContext);
   function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     setDisplay("none");
     logout();
-  }
-
-  if (sessionStorage.getItem("UserToken")) {
-    user = data?.me
   }
 
   function handleResize() {
@@ -181,12 +183,24 @@ const SomeComponent = withRouter((event) => {
     } else if (logoutResult.data?.logout === false) {
       alert("로그아웃에 실패했습니다");
     }
+    if (user) {
+
+    }
 
   }, [logoutResult.data, history]);
 
   // if (currentUser.data?.user === null) history.replace("/login");
   if (logoutResult.loading) return <Loading />;
   if (logoutResult.error) return <Error msg={logoutResult.error.message} />;
+  if (loading) {
+    return (<Loading />)
+  } else {
+    if (userContext || sessionStorage.getItem("UserToken")) {
+
+      user = data?.me ? data?.me : userContext
+
+    }
+  }
 
   return (
 
@@ -203,19 +217,19 @@ const SomeComponent = withRouter((event) => {
       </MenuItem>
       <List display={display}>
         <Item>
-          <SLink to="/" onClick={HeaderListToggle}>
+          <SLink to="/card-wallet/" onClick={HeaderListToggle}>
             패스리스트
         </SLink>
         </Item>
         <Item>
-          <SLink to="/notice" onClick={HeaderListToggle}>
+          <SLink to="/card-wallet/notice" onClick={HeaderListToggle}>
             공지사항
         </SLink>
         </Item>
         {
           user ? (
             <><Item>
-              <SLink to="/mypage" onClick={HeaderListToggle}>
+              <SLink to="/card-wallet/mypage" onClick={HeaderListToggle}>
                 마이페이지
                 </SLink>
             </Item>
@@ -226,12 +240,12 @@ const SomeComponent = withRouter((event) => {
               </Item></>
           ) : (
               <><Item>
-                <SLink to="/login" onClick={HeaderListToggle} >
+                <SLink to="/card-wallet/login" onClick={HeaderListToggle} >
                   로그인
                   </SLink>
               </Item>
                 <Item>
-                  <SLink to="/signup" onClick={HeaderListToggle}>
+                  <SLink to="/card-wallet/signup" onClick={HeaderListToggle}>
                     회원가입
                     </SLink>
                 </Item></>

@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Router from "./Router";
 import "../globalstyle.css";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "../apollo/client";
-import { UserProvider } from "../Context/UserContext";
+import UserContext from "../Context/UserContext";
 
 function App() {
-  console.log("app")
+
+  const [userContext, setUserContext] = useState("");
   return (
-    <UserProvider>
+    <UserContext.Provider value={[userContext, setUserContext]} >
       <ApolloProvider client={client}>
         <Router />
       </ApolloProvider>
-    </UserProvider>);
+    </UserContext.Provider>);
 
 }
 

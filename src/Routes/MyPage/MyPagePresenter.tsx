@@ -23,6 +23,7 @@ const Container = styled.div`
      ${CardContainer}{
         grid-template-columns:repeat(3,1fr);
      }
+    
  }
  @media only screen and (max-width: 1370px){
      ${CardContainer}{
@@ -33,6 +34,8 @@ const Container = styled.div`
      ${CardContainer}{
         grid-template-columns:repeat(1,1fr);
      }
+     width:100vw;
+     margin-top:-18px;
  }
 `;
 
