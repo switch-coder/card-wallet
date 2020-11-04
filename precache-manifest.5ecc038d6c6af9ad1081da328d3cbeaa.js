@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ec9893a47c48df1f178f4e362e0eae3e",
+    "revision": "2b64b6d08a87801983e055644e88e9ec",
     "url": "/card-wallet/index.html"
   },
   {
-    "revision": "e973f0bb265e7ccec073",
+    "revision": "f946651dd60eb7bfbc75",
     "url": "/card-wallet/static/css/main.7de3b540.chunk.css"
   },
   {
-    "revision": "68b2789cec3e877dac6b",
-    "url": "/card-wallet/static/js/2.db208e65.chunk.js"
+    "revision": "e8d766c5164fe0517c8b",
+    "url": "/card-wallet/static/js/2.7b2897e9.chunk.js"
   },
   {
     "revision": "c87550333da8df8ab4c80bd1d6e9defb",
-    "url": "/card-wallet/static/js/2.db208e65.chunk.js.LICENSE.txt"
+    "url": "/card-wallet/static/js/2.7b2897e9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e973f0bb265e7ccec073",
-    "url": "/card-wallet/static/js/main.e9db6f7a.chunk.js"
+    "revision": "f946651dd60eb7bfbc75",
+    "url": "/card-wallet/static/js/main.301285f0.chunk.js"
   },
   {
     "revision": "74b199eeceb2fddfe3a1",
