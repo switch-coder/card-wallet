@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/card-wallet/static/css/main.7de3b540.chunk.css",
-    "main.js": "/card-wallet/static/js/main.671d6118.chunk.js",
-    "main.js.map": "/card-wallet/static/js/main.671d6118.chunk.js.map",
+    "main.js": "/card-wallet/static/js/main.b32a92ca.chunk.js",
+    "main.js.map": "/card-wallet/static/js/main.b32a92ca.chunk.js.map",
     "runtime-main.js": "/card-wallet/static/js/runtime-main.73eae6e2.js",
     "runtime-main.js.map": "/card-wallet/static/js/runtime-main.73eae6e2.js.map",
-    "static/js/2.1370d5b3.chunk.js": "/card-wallet/static/js/2.1370d5b3.chunk.js",
-    "static/js/2.1370d5b3.chunk.js.map": "/card-wallet/static/js/2.1370d5b3.chunk.js.map",
+    "static/js/2.db208e65.chunk.js": "/card-wallet/static/js/2.db208e65.chunk.js",
+    "static/js/2.db208e65.chunk.js.map": "/card-wallet/static/js/2.db208e65.chunk.js.map",
     "index.html": "/card-wallet/index.html",
-    "precache-manifest.fc5c1c798d6fe9bd2f9d7f196b9fcc03.js": "/card-wallet/precache-manifest.fc5c1c798d6fe9bd2f9d7f196b9fcc03.js",
+    "precache-manifest.8ab9bc7178e7d39c066e080d7d3697da.js": "/card-wallet/precache-manifest.8ab9bc7178e7d39c066e080d7d3697da.js",
     "service-worker.js": "/card-wallet/service-worker.js",
     "static/css/main.7de3b540.chunk.css.map": "/card-wallet/static/css/main.7de3b540.chunk.css.map",
-    "static/js/2.1370d5b3.chunk.js.LICENSE.txt": "/card-wallet/static/js/2.1370d5b3.chunk.js.LICENSE.txt",
+    "static/js/2.db208e65.chunk.js.LICENSE.txt": "/card-wallet/static/js/2.db208e65.chunk.js.LICENSE.txt",
     "static/media/103.png": "/card-wallet/static/media/103.8a353cbc.png",
     "static/media/109.png": "/card-wallet/static/media/109.6d70709b.png",
     "static/media/114.png": "/card-wallet/static/media/114.40affce7.png",
@@ -32,8 +32,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.73eae6e2.js",
-    "static/js/2.1370d5b3.chunk.js",
+    "static/js/2.db208e65.chunk.js",
     "static/css/main.7de3b540.chunk.css",
-    "static/js/main.671d6118.chunk.js"
+    "static/js/main.b32a92ca.chunk.js"
   ]
 }
