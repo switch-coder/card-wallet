@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import EditPresenter from "./EditPresenter";
 import Membership from "../../membership.json";
 import { IAddCardData, IAddCardVars } from "../../apollo/interfaces"
 import { gql, useMutation } from "@apollo/client";
 import Quagga from "quagga";
-import { object } from "prop-types";
 
 const AddCard = gql`
  mutation AddCard($name:String! $store:String! $img:String! $cardNumber:String! $isCutting:Boolean!,$bgColor:String!,$color:String!){
@@ -17,32 +16,36 @@ interface IParams {
 
 }
 
-export default (event: any) => {
+const EditContainer = (event: any) => {
   const { id } = useParams<IParams>();
   const [userName, setUserName] = useState(""),
     [serialNumber, setSerialNumber] = useState(""),
     [isCutting, setRadio] = useState(true);
   const [addCard, ResultAddCard] = useMutation<IAddCardData, IAddCardVars>(AddCard)
+  const history = useHistory();
   const data = Membership.data.filter(
     (card) => card.num === parseInt(id)
   );
 
+  useEffect(() => {
+    if (ResultAddCard.data?.addCard === true) {
+      alert("추가되었습니다.");
+      history.push("/card-wallet/");
+    }
+  }, [ResultAddCard.data, history])
+
   if (isNaN(parseInt(id)) || data.length === 0) {
-    event.history.push("/card-wallet/");
+    history.push("/card-wallet/");
     return <></>;
   }
 
   if (!sessionStorage.getItem("UserToken")) {
-    event.history.push("/card-wallet/", alert("로그인이 필요합니다."));
+    history.push("/card-wallet/", alert("로그인이 필요합니다."));
     return <></>;
   }
 
-  useEffect(() => {
-    if (ResultAddCard.data?.addCard === true) {
-      alert("추가되었습니다.");
-      event.history.push("/card-wallet/");
-    }
-  })
+
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     addCard({ variables: { name: userName, store: data[0].name, cardNumber: serialNumber, img: id, isCutting, bgColor: data[0].img_color, color: data[0].font_color } })
@@ -103,4 +106,5 @@ export default (event: any) => {
 
 }
 
+export default EditContainer;
 
