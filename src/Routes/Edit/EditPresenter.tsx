@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { IBgColor, IBgUrl } from "../../Component/styledInterface"
+import { IBgColor, IBgUrl } from "../../Component/styledInterface";
 
 const Container = styled.div`
   background-color: #ffffff;
@@ -109,6 +109,13 @@ const RadioLable = styled.label`
   display:inline-block;
 `;
 
+const Camera = styled.input`
+  width:80px;
+  height:25px;
+  &:hover{
+    cursor:pointer;
+  }
+ `;
 
 interface IProps {
   num: string;
@@ -120,16 +127,17 @@ interface IProps {
   handleSubmit: (evnt: React.FormEvent) => void;
   setUserName: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setSRNumber: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setCamera: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setRadio: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const EditPresenter: React.FunctionComponent<IProps> = ({ num, bgColor, color, storeName, userName, serialNumber, setUserName, setSRNumber, handleSubmit, setRadio }) => (
+const EditPresenter: React.FunctionComponent<IProps> = ({ num, bgColor, color, storeName, userName, serialNumber, setUserName, setSRNumber, handleSubmit, setRadio, setCamera }) => (
   <Container>
     <Title>
       <Tab>패스 등록</Tab>
     </Title>
     <LogoContainer bgColor={bgColor}>
-      <Logo bgUrl={num && require(`../../asset/logo/${num}.png`)} />
+      <Logo bgUrl={num && require(`../../asset/logo/${num}.png`).default} />
     </LogoContainer>
     <FormWrap onSubmit={handleSubmit}>
       <Row>
@@ -143,6 +151,10 @@ const EditPresenter: React.FunctionComponent<IProps> = ({ num, bgColor, color, s
         <Input value={serialNumber} onChange={setSRNumber} type="text" placeholder="이름을 입력하세요" required />
         <Message>
           *실제 멤버쉽 번호를 "-" 를 제외하고 숫자만 입력해주세요{" "}
+        </Message>
+        <Camera type="file" accept="image/*;capture=camera" onChange={setCamera}></Camera>
+        <Message>
+          *위 파일선택 버튼으로 바코드가 보이는 파일을 선택하여 번호를 자동으로 입력해보세요!.{" "}
         </Message>
       </Row>
       <Row>

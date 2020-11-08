@@ -4,7 +4,8 @@ import EditPresenter from "./EditPresenter";
 import Membership from "../../membership.json";
 import { IAddCardData, IAddCardVars } from "../../apollo/interfaces"
 import { gql, useMutation } from "@apollo/client";
-
+import Quagga from "quagga";
+import { object } from "prop-types";
 
 const AddCard = gql`
  mutation AddCard($name:String! $store:String! $img:String! $cardNumber:String! $isCutting:Boolean!,$bgColor:String!,$color:String!){
@@ -45,7 +46,6 @@ export default (event: any) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     addCard({ variables: { name: userName, store: data[0].name, cardNumber: serialNumber, img: id, isCutting, bgColor: data[0].img_color, color: data[0].font_color } })
-    console.log(typeof userName, typeof serialNumber, typeof data[0].name, typeof id, data[0].img_color, data[0].font_color, typeof isCutting)
   };
 
   const onChangeUserName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,11 +60,32 @@ export default (event: any) => {
   }
 
   const onChageRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let { value } = event.target;
+    const { value } = event.target;
     if (value === "true") { setRadio(true); }
     else if (value === "false") { setRadio(false); }
   }
 
+  const onChangeCamera = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files![0];
+    Quagga.decodeSingle({
+      src: URL.createObjectURL(file),
+      numOfWorkers: 1,  // Needs to be 0 when used within node
+      inputStream: {
+        size: 800  // restrict input-size to be 800px in width (long-side)
+      },
+      decoder: {
+        readers: ["code_128_reader"] // List of active readers
+      },
+    }, function (result) {
+      console.log(result);
+      if (result.codeResult) {
+        setSerialNumber(result.codeResult.code);
+      } else {
+        alert("파일을 읽을 수 없습니다.")
+      }
+    });
+
+  }
 
   return <EditPresenter
     num={id}
@@ -77,6 +98,7 @@ export default (event: any) => {
     setUserName={onChangeUserName}
     setSRNumber={onChangeSRNumber}
     setRadio={onChageRadio}
+    setCamera={onChangeCamera}
   ></EditPresenter>
 
 }
