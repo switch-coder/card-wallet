@@ -84,10 +84,10 @@ interface IProps {
 export const Form: React.FunctionComponent<IProps> = ({ ID, password, setID, setPassword, handleSubmit }) => {
     return <Container onSubmit={handleSubmit}>
         <Title>로그인</Title>
-        <Input type="text" placeholder="ID" value={ID} onChange={setID}></Input>
-        <Input type="password" placeholder="암호" value={password} onChange={setPassword}></Input>
+        <Input type="text" placeholder="ID" value={ID} onChange={setID} required></Input>
+        <Input type="password" placeholder="암호" value={password} onChange={setPassword} required></Input>
         <Button type="submit" >로그인 </Button>
-        <SignupButton><Link to="/signup" >ID생성</Link></SignupButton>
+        <SignupButton><Link to="/card-wallet/signup" >ID생성</Link></SignupButton>
     </Container>;
 };
 
