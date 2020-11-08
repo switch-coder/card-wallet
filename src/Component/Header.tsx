@@ -143,18 +143,19 @@ const Header = styled.header<{ display: string }>`
 
 const SomeComponent = withRouter((event) => {
   let user;
-
   const { data, loading } = useQuery<IMe>(Me);
   const [logout, logoutResult] = useMutation<ILogoutData>(LOGOUT);
   const history = useHistory();
   const [display, setDisplay] = useState("flex");
-  const [userContext] = useContext(UserContext);
+  const [userContext, setUserContext] = useContext(UserContext);
 
-  console.log(userContext);
   function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    setDisplay("none");
+    if (window.innerWidth <= 750) {
+      setDisplay("none");
+    }
     logout();
+
   }
 
   function handleResize() {
@@ -170,7 +171,6 @@ const SomeComponent = withRouter((event) => {
 
   }
 
-
   useEffect(() => {
 
     window.addEventListener("resize", handleResize);
@@ -178,13 +178,11 @@ const SomeComponent = withRouter((event) => {
     // document.removeEventListener("mousedown", handleClickOutside);
     if (logoutResult.data?.logout === true) {
       currentUserVar(null);
-      history.replace("/");
+      history.replace("/card-wallet/");
       sessionStorage.removeItem("UserToken")
+      setUserContext(null);
     } else if (logoutResult.data?.logout === false) {
       alert("로그아웃에 실패했습니다");
-    }
-    if (user) {
-
     }
 
   }, [logoutResult.data, history]);
