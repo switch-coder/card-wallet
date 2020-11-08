@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/card-wallet/static/css/main.8bfdfd05.chunk.css",
-    "main.js": "/card-wallet/static/js/main.2aee8967.chunk.js",
-    "main.js.map": "/card-wallet/static/js/main.2aee8967.chunk.js.map",
+    "main.js": "/card-wallet/static/js/main.92dd9fc4.chunk.js",
+    "main.js.map": "/card-wallet/static/js/main.92dd9fc4.chunk.js.map",
     "runtime-main.js": "/card-wallet/static/js/runtime-main.d1ecb7d7.js",
     "runtime-main.js.map": "/card-wallet/static/js/runtime-main.d1ecb7d7.js.map",
-    "static/js/2.5eb1d0ef.chunk.js": "/card-wallet/static/js/2.5eb1d0ef.chunk.js",
-    "static/js/2.5eb1d0ef.chunk.js.map": "/card-wallet/static/js/2.5eb1d0ef.chunk.js.map",
+    "static/js/2.b9dee772.chunk.js": "/card-wallet/static/js/2.b9dee772.chunk.js",
+    "static/js/2.b9dee772.chunk.js.map": "/card-wallet/static/js/2.b9dee772.chunk.js.map",
     "index.html": "/card-wallet/index.html",
     "static/css/main.8bfdfd05.chunk.css.map": "/card-wallet/static/css/main.8bfdfd05.chunk.css.map",
-    "static/js/2.5eb1d0ef.chunk.js.LICENSE.txt": "/card-wallet/static/js/2.5eb1d0ef.chunk.js.LICENSE.txt",
+    "static/js/2.b9dee772.chunk.js.LICENSE.txt": "/card-wallet/static/js/2.b9dee772.chunk.js.LICENSE.txt",
     "static/media/103.png": "/card-wallet/static/media/103.4d0ed5ae.png",
     "static/media/109.png": "/card-wallet/static/media/109.8fb9b87a.png",
     "static/media/114.png": "/card-wallet/static/media/114.7d722f3c.png",
@@ -30,8 +30,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.d1ecb7d7.js",
-    "static/js/2.5eb1d0ef.chunk.js",
+    "static/js/2.b9dee772.chunk.js",
     "static/css/main.8bfdfd05.chunk.css",
-    "static/js/main.2aee8967.chunk.js"
+    "static/js/main.92dd9fc4.chunk.js"
   ]
 }
