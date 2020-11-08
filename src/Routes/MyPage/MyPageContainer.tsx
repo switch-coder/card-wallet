@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { currentUserVar, GET_CURRENT_USER } from "../../apollo/cache";
-import { IMydata, ICurrentUserData, IRemoveCard, IRemoveCardVar, IMutationCard, IMutationcardVars } from "../../apollo/interfaces";
+import { currentUserVar } from "../../apollo/cache";
+import { IMydata, IRemoveCard, IRemoveCardVar, IMutationCard, IMutationcardVars } from "../../apollo/interfaces";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import MyPagePresenter from "./MyPagePresenter";
@@ -44,39 +44,32 @@ const MyPageContainer = (event: any) => {
   }),
     [modifyCard, setModifyCard] = useState({ name: "", cardNumber: "" })
   let user;
-  const { data, loading, error, refetch } = useQuery<IMydata>(Mydata);
+  const { data, loading, error, refetch, networkStatus } = useQuery<IMydata>(Mydata, {
+    fetchPolicy: "network-only"
+  });
   const [remove, RasultRemove] = useMutation<IRemoveCard, IRemoveCardVar>(RemoveCard);
   const [mutation, ResultMutation] = useMutation<IMutationCard, IMutationcardVars>(MutationCard);
 
   useEffect(() => {
     if (RasultRemove.data?.removeCard === true) {
-      setModify({
-        display: "none",
-        key: "",
-        img: ""
-      });
-      alert("삭제되었습니다.");
+
       refetch();
     } else if (RasultRemove.data?.removeCard === false) {
       alert("다시시도해 주세요");
+      console.log("remove")
     }
     if (ResultMutation.data?.mutationCard === true) {
-      setModify({
-        display: "none",
-        key: "",
-        img: ""
-      });
-      setModifyCard({
-        name: "",
-        cardNumber: ""
-      });
-      alert("변경되었습니다.");
+      console.log("ResultMutation")
       refetch();
+
     } else if (ResultMutation.data?.mutationCard === false) {
       alert("다시시도해 주세요");
+      console.log("mutation")
     }
-  });
-
+  }, [RasultRemove.data, ResultMutation.data]);
+  if (networkStatus === 4) {
+    return (<>refetching</>)
+  }
   if (error) {
     return (<>"에러"</>)
   }
@@ -87,16 +80,17 @@ const MyPageContainer = (event: any) => {
     currentUserVar(data?.mydata)
     user = data?.mydata
   }
-  console.log(user)
+
 
   if (user === null) history.replace("/card-wallet/login");
 
   const modifyClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = event.currentTarget;
-    const { img } = user?.cards.filter((data) => data._id === id)[0];
+    const { img, name, cardNumber } = user?.cards.filter((data) => data._id === id)[0];
     console.log(img);
-    const setImg = require(`../../asset/logo/${img}.png`);
-    console.log(setImg)
+    const setImg = require(`../../asset/logo/${img}.png`).default;
+
+    setModifyCard({ name, cardNumber })
     setModify({
       display: "",
       key: id,
@@ -106,11 +100,21 @@ const MyPageContainer = (event: any) => {
 
   const mutationCard = (event: React.MouseEvent<HTMLButtonElement>) => {
     mutation({ variables: { key: modify.key, name: modifyCard.name, cardNumber: modifyCard.cardNumber } });
+    setModify({
+      display: "none",
+      key: "",
+      img: ""
+    });
+
   }
 
   const removeCard = (event: React.MouseEvent<HTMLButtonElement>) => {
     remove({ variables: { key: modify.key } });
-
+    setModify({
+      display: "none",
+      key: "",
+      img: ""
+    });
   }
 
   const cancelBtn = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -139,7 +143,7 @@ const MyPageContainer = (event: any) => {
   }
 
   return (
-    <MyPagePresenter cards={user?.cards} modify={modify} setModify={modifyClick} cancelBtn={cancelBtn} removeCard={removeCard} mutationCard={mutationCard} setModifyCard={setCard}></MyPagePresenter >
+    <MyPagePresenter cards={user?.cards} modify={modify} setModify={modifyClick} cancelBtn={cancelBtn} removeCard={removeCard} mutationCard={mutationCard} modifyCard={modifyCard} setModifyCard={setCard}></MyPagePresenter >
   );
 }
 

@@ -23,11 +23,12 @@
     "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
     "qrcode.react": "1.0.0",
+    "quagga": "^0.12.1",
     "react": "^16.13.1",
     "react-barcode": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.0",
     "styled-components": "^5.2.0",
     "typescript": "^4.0.3"
   },

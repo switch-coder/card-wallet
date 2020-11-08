@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import styled from "styled-components";
 import MyCard from "../../Component/MyCard"
 import { IBgColor, IBgUrl, IColor } from "../../Component/styledInterface"
@@ -36,20 +36,18 @@ const Container = styled.div`
      }
      width:100vw;
      margin-top:-18px;
+    
  }
 `;
 
 const EmptyCard = styled.div`
-font-size:1.7em;
-font-weight:550;
-height:400px;
-display:flex;
-align-items:center;
-justify-content:center;
+    font-size:1.7em;
+    font-weight:550;
+    height:400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 `;
-
-
-
 
 
 interface ModifyContainer {
@@ -60,16 +58,18 @@ const ModifyContainer = styled.div<ModifyContainer>`
     display:${props => props.display};
     position:fixed;
     width:35vw;
-    height:60vh;
+    height:65vh;
     justify-content:center;
     padding:20px;
     background-color:${props => props.bgColor};
     box-shadow: 0px 0px 300px 200px rgba(0,0,0,0.29);
     border-radius:13px;
     left:50%;
-    top:50%;
-    transform: translate(-50%, -50%);
+    bottom:50%;
+    transform: translate(-50%, 50%);
     min-width:300px;
+    min-height:420px;
+    max-height:500px;
 `;
 
 const Logo = styled.div<IBgUrl>`
@@ -80,12 +80,18 @@ const Logo = styled.div<IBgUrl>`
     
     width: 100%;
     height:100px;
+    
 `;
 
 const Row = styled.div`
   &:not(:first-child) {
     margin-top: 20px;
   }
+  @media only screen and (max-height: 530px){
+        &:last-child{
+            margin-bottom:100px;
+        }
+    }
 `;
 
 const Input = styled.input`
@@ -201,10 +207,11 @@ interface IProps {
     removeCard: (event: React.MouseEvent<HTMLButtonElement>) => void
     mutationCard: (event: React.MouseEvent<HTMLButtonElement>) => void
     setModifyCard: (evnet: React.ChangeEvent<HTMLInputElement>) => void
+    modifyCard: { name: string, cardNumber: string }
     modify: { key: string, display: string, img: string }
 }
 
-const MyPagePresenter: React.FunctionComponent<IProps> = ({ cards, modify, setModify, cancelBtn, removeCard, mutationCard, setModifyCard }) => {
+const MyPagePresenter: React.FunctionComponent<IProps> = ({ cards, modify, setModify, cancelBtn, removeCard, mutationCard, modifyCard, setModifyCard }) => {
     const card: { name: String, cardNumber: String, bgColor: string, color: string, img: String } = cards.filter(card => card._id === modify.key)[0];
 
 
@@ -228,12 +235,12 @@ const MyPagePresenter: React.FunctionComponent<IProps> = ({ cards, modify, setMo
                 <Logo bgUrl={modify && modify.img}></Logo>
                 <Row>
                     <Label color={card.color}>이름</Label>
-                    <Input value={card.name + ""} name="name" onChange={setModifyCard} type="text" placeholder="이름을 입력하세요" required />
+                    <Input value={modifyCard.name} name="name" onChange={setModifyCard} type="text" placeholder="이름을 입력하세요" required />
                     <Message>*실제 멤버쉽을 발급받은 사람의 이름을 입력하세요 </Message>
                 </Row>
                 <Row>
                     <Label color={card.color}>카드번호</Label>
-                    <Input value={card.cardNumber + ""} name="cardNumber" onChange={setModifyCard} type="text" placeholder="카드번호를 입력하세요" required />
+                    <Input value={modifyCard.cardNumber} name="cardNumber" onChange={setModifyCard} type="text" placeholder="카드번호를 입력하세요" required />
                     <Message>*실제 멤버쉽을 발급받은 사람의 이름을 입력하세요 </Message>
                 </Row>
                 <BtmButton>

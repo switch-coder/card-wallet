@@ -23,18 +23,12 @@ function Signup() {
   useEffect(() => {
     if (signupResult.data?.signup === true) {
       alert("회원가입되었습니다.")
-
+      history.replace("/card-wallet/login")
     } else if (signupResult.data?.signup === false) {
       alert("회원가입에 실패힜습니다.");
     }
 
   }, [signupResult.data, history]);
-
-  const onChangeSRNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let { value } = event.target;
-    value = value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-    setPwd(value);
-  }
 
   const onChangePwValid = (evnet: React.ChangeEvent<HTMLInputElement>) => {
     let { value } = evnet.target;

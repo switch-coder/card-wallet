@@ -1,7 +1,7 @@
 
 import { ApolloClient, createHttpLink, GraphQLRequest } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { cache, currentUserVar } from "./cache";
+import { cache } from "./cache";
 
 const httpLink = createHttpLink({
   uri: "https://web-wallet-server.herokuapp.com/graphql",
