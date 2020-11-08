@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/card-wallet/static/css/main.8bfdfd05.chunk.css",
-    "main.js": "/card-wallet/static/js/main.ce31321e.chunk.js",
-    "main.js.map": "/card-wallet/static/js/main.ce31321e.chunk.js.map",
+    "main.js": "/card-wallet/static/js/main.2aee8967.chunk.js",
+    "main.js.map": "/card-wallet/static/js/main.2aee8967.chunk.js.map",
     "runtime-main.js": "/card-wallet/static/js/runtime-main.d1ecb7d7.js",
     "runtime-main.js.map": "/card-wallet/static/js/runtime-main.d1ecb7d7.js.map",
     "static/js/2.5eb1d0ef.chunk.js": "/card-wallet/static/js/2.5eb1d0ef.chunk.js",
@@ -32,6 +32,6 @@
     "static/js/runtime-main.d1ecb7d7.js",
     "static/js/2.5eb1d0ef.chunk.js",
     "static/css/main.8bfdfd05.chunk.css",
-    "static/js/main.ce31321e.chunk.js"
+    "static/js/main.2aee8967.chunk.js"
   ]
 }
