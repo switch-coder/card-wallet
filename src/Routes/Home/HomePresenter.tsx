@@ -54,29 +54,76 @@ const Tab = styled.span`
   font-weight: 600;
 `;
 
+const SearchContainer = styled.div`  
+  width: 50%;
+  height: 50px;
+  align-items: center;
+  display:flex;
+  justify-content:flex-end;
+`;
+
+const SearchBtn = styled.button`
+  width:60px;
+  height:34px;
+  padding:2px 10px 2px 10px;
+  border:1px solid #d2d2d7;
+    &:hover{
+      cursor:pointer;
+    }
+    &:focus{
+        outline:none;
+    }
+
+`;
+const SearchBox = styled.input`
+  width:100px;
+  height:30px;
+  padding:2px 10px 0px 10px;
+  border:1px solid #d2d2d7;
+    &:focus{
+        outline:none;
+    }
+
+`;
+
+const EmptyCard = styled.div`
+    font-size:1.7em;
+    font-weight:550;
+    height:400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+`;
 
 
-const HomePresenter = ({ MemberShip }) => (
-  <Container>
-    <Title>
-      <Tab>패스 리스트</Tab>
-    </Title>
-    {MemberShip && MemberShip.length > 0 && (
-      <Contents>
-        {MemberShip.map((data) => (
-          <Card
-            key={data.num}
-            name={data.name}
-            name_en={data.name_en}
-            num={data.num}
-            image_color={data.img_color}
-            font_color={data.font_color}
-          />
-        ))}
-      </Contents>
-    )}
-  </Container>
-);
+
+const HomePresenter = ({ MemberShip, Search, ChangeSearch, ClickSearch }) =>
+  (
+    <Container>
+      <Title>
+        <Tab>패스 리스트</Tab>
+        <SearchContainer>
+          <SearchBox onChange={ChangeSearch} value={Search}></SearchBox>
+          <SearchBtn type="submit" onClick={ClickSearch} >검색</SearchBtn>
+        </SearchContainer>
+      </Title>
+
+      {MemberShip && MemberShip.length > 0 ? (
+        <Contents>
+          {MemberShip.map((data) => (
+            <Card
+              key={data.num}
+              name={data.name}
+              name_en={data.name_en}
+              num={data.num}
+              image_color={data.img_color}
+              font_color={data.font_color}
+            />
+          ))}
+        </Contents>
+      ) : <EmptyCard> 검색하신 내용을 찾을 수 없습니다.</EmptyCard>}
+    </Container>
+  );
 
 HomePresenter.propsTypes = {
   MemberShip: PropsTypes.array,
