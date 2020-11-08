@@ -11,6 +11,7 @@ const Title = styled.span`
   position: relative;
   font-size: 1em;
   color: ${(props) => props.font_color};
+
   display: flex;
   height: 150px;
   justify-content: center;
@@ -18,7 +19,7 @@ const Title = styled.span`
 `;
 
 const Image = styled.div`
-  background-image: url(${(props) => props.bgUrl});
+  background-image: url(${props => props.bgUrl});
   height: 170px;
   width: 100%;
   background-size: contain;
@@ -29,17 +30,19 @@ const Image = styled.div`
   box-shadow: rgba(0, 0, 0, 0.12) 0 5px 20px, rgba(0, 0, 0, 0.15) 0 7px 15px;
 `;
 
-const Card = ({ name, name_en, num, image_color, font_color }) => (
-  <Link to={`/card-wallet/edit/${num}`}>
-    <Container>
-      <Image bgUrl={require(`../asset/logo/${num}.png`)} bgColor={image_color}>
-        <Title font_color={font_color} bgColor={image_color}>
-          {name}
-        </Title>
-      </Image>
-    </Container>
-  </Link>
-);
+const Card = ({ name, name_en, num, image_color, font_color }) => {
+  return (
+    <Link to={`/card-wallet/edit/${num}`}>
+      <Container>
+        <Image bgUrl={num && require(`../asset/logo/${num}.png`).default} bgColor={image_color}>
+          <Title font_color={font_color} bgColor={image_color}>
+            {name}
+          </Title>
+        </Image>
+      </Container>
+    </Link>
+  )
+};
 
 Card.propTypes = {
   name: PropTypes.string,

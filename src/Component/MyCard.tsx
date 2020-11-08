@@ -21,6 +21,9 @@ const Modify = styled.button<IBgColor>`
     border:none;
     cursor:pointer;
     background-color:${props => props.color};
+    @media only screen and (max-width: 900px){
+        opacity:1;
+    }
 `;
 
 const Container = styled.div<IBgColor>`
@@ -89,7 +92,7 @@ interface IPorps {
 const MyCard: React.FunctionComponent<IPorps> = ({ _id, Url, bgColor, color, userName, cardNumber, isCutting, setModify }) => (
     <Container bgColor={`${bgColor}`} >
         <Modify color={`${color}`} bgColor={`${bgColor}`} onClick={setModify} id={_id}>수정</Modify>
-        <StoreLogo bgUrl={Url && require(`../asset/logo/${Url}.png`)} />
+        <StoreLogo bgUrl={Url && require(`../asset/logo/${Url}.png`).default} />
         <BarcodeWarpper>
             <Barcode value={cardNumber} displayValue={false} width={2} />
         </BarcodeWarpper>
