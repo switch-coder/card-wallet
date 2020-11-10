@@ -56,18 +56,22 @@ const EditContainer = (event: any) => {
     setUserName(value);
   }
 
+  //카드번호 입력
   const onChangeSRNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { value } = event.target;
+    //숫자만 입력가능하게 replace 함수 사용
     value = value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
     setSerialNumber(value);
   }
 
+  //4자리마다 띄우기 / 다 붙여쓰기 선택
   const onChageRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     if (value === "true") { setRadio(true); }
     else if (value === "false") { setRadio(false); }
   }
 
+  //바코드 이미지를 인식하여 숫자정보를 추출함
   const onChangeCamera = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files![0];
     Quagga.decodeSingle({
@@ -80,7 +84,6 @@ const EditContainer = (event: any) => {
         readers: ["code_128_reader"] // List of active readers
       },
     }, function (result) {
-      console.log(result);
       if (result.codeResult) {
         setSerialNumber(result.codeResult.code);
       } else {

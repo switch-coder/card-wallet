@@ -2,6 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 
 const Conatiner = styled.div`
+  position: fixed;
   display: relative;
   width: 100%;
   height: 85vh;
@@ -50,8 +51,8 @@ const Text = styled.span`
 `;
 
 export default () => (
-    <Conatiner>
-        <Rotate />
-        <Text>Loading...</Text>
-    </Conatiner>
+  <Conatiner>
+    <Rotate />
+    <Text>Loading...</Text>
+  </Conatiner>
 );

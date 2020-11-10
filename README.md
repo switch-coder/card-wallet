@@ -30,3 +30,62 @@
 3. back-end 
 
 - `Apollo` 서버에 `MongoDB`를 연동하여 사용
+
+
+&nbsp;
+-------
+
+
+# 프로젝트 구조
+
+  index
+    |
+  App
+    |
+  userContext
+    |        
+  ApolloProvier
+    |
+  Router
+    |
+    |-----Header
+    |
+    |
+    |
+    |-----Switch
+            |-----Home----card
+            |
+            |-----Loading
+            |
+            |-----Error
+            |
+            |
+            |-----login
+            |       |
+            |       |-----Loading
+            |       |
+            |       |-----Error
+            |
+            |-----signup
+            |       |
+            |       |-----Loading
+            |       |
+            |       |-----Error
+            |
+            |-----edit
+            |       |
+            |       |-----Loading
+            |       |
+            |       |-----Error
+            |
+            |-----MyPage----MyCard
+                    |
+                    |-----Loading
+                    |
+                    |-----Error
+
+
+ 
+ 
+
+

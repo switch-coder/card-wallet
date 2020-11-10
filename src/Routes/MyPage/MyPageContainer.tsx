@@ -6,6 +6,10 @@ import { useHistory } from "react-router-dom";
 import MyPagePresenter from "./MyPagePresenter";
 import Loading from "../../Component/Loading";
 
+// 저장해놨던 멤버십정보들을 카드형식으로 보여줌
+// 각각의 카드에 마우스를 올려놓으면 수정버튼이 보이고 클릭시 수정 모달을 보여줌
+// 수정시  mutation 으로 업데이트후 성공시 refetch 하여 데이터를 다시 로드함
+
 const Mydata = gql`
 query { 
   mydata{
@@ -35,8 +39,12 @@ const MutationCard = gql`
 
 `;
 
+
+
 const MyPageContainer = (event: any) => {
   const history = useHistory();
+
+  //수정버튼 눌렀을때 dispaly :"" , key : 카드생성시 id값 , image : 동적으로 이미지 로드후 데이터를 넣어준다
   const [modify, setModify] = useState({
     display: "none",
     key: "",
@@ -67,6 +75,8 @@ const MyPageContainer = (event: any) => {
       console.log("mutation")
     }
   }, [RasultRemove.data, ResultMutation.data]);
+
+
   if (networkStatus === 4) {
     return (<>refetching</>)
   }
@@ -81,9 +91,9 @@ const MyPageContainer = (event: any) => {
     user = data?.mydata
   }
 
-
   if (user === null) history.replace("/card-wallet/login");
 
+  // 카드 오버후 수정버튼 눌렀을때 여기서 이미지 로드를 해주고 'img' 에 값을 넣어준다
   const modifyClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = event.currentTarget;
     const { img, name, cardNumber } = user?.cards.filter((data) => data._id === id)[0];
@@ -98,6 +108,7 @@ const MyPageContainer = (event: any) => {
     });
   }
 
+  //모달창에서 수정버튼 클릭하여 서버에 정보 업데이트 시
   const mutationCard = (event: React.MouseEvent<HTMLButtonElement>) => {
     mutation({ variables: { key: modify.key, name: modifyCard.name, cardNumber: modifyCard.cardNumber } });
     setModify({

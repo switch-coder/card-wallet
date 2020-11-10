@@ -30,6 +30,7 @@ function Signup() {
 
   }, [signupResult.data, history]);
 
+  //비밀번호와 비밀번호 확인이 다른지 같은지 보여주는 기능
   const onChangePwValid = (evnet: React.ChangeEvent<HTMLInputElement>) => {
     let { value } = evnet.target;
     setPwValid(value);
